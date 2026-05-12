@@ -1,6 +1,6 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
-using static UnityEngine.ParticleSystem;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Target : MonoBehaviour
 {
@@ -18,12 +18,11 @@ public class Target : MonoBehaviour
     void Start()
     {
         targetRb = GetComponent<Rigidbody>();
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         targetRb.AddForce(RandomForce(), ForceMode.Impulse);
         targetRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
 
-        transform.position = RandomSpawnPos(); 
+        transform.position = RandomSpawnPos();
     }
 
 
@@ -49,12 +48,10 @@ public class Target : MonoBehaviour
     {
         return Vector3.up * Random.Range(minSpeed, maxSpeed);
     }
-
     float RandomTorque()
     {
         return Random.Range(-maxTorque, maxTorque);
     }
-
     Vector3 RandomSpawnPos()
     {
         return new Vector3(Random.Range(-xRange, xRange), ySpawnPos);
